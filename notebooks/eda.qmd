@@ -1,0 +1,91 @@
+
+
+```{python}
+import anndata as ad
+import scanpy as sc
+import polars as pl
+from great_tables import GT
+adata = sc.read_h5ad('data/adata_labeled.h5ad')
+print(adata.obs)
+print(adata.X)
+```
+
+count treg
+
+```{python}
+obs = pl.from_pandas(adata.obs)
+obs.group_by('level3').len()
+```
+
+normalize
+
+```{python}
+sc.pp.normalize_total(adata)
+sc.pp.log1p(adata)
+
+# Identify highly variable genes
+sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
+adata.raw = adata  # Save raw data
+adata = adata[:, adata.var.highly_variable]
+
+# Scale data and compute PCA
+sc.pp.scale(adata, max_value=10)
+sc.tl.pca(adata, svd_solver="arpack")
+```
+
+
+```{python}
+# Compute neighbors and the UMAP projection
+sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
+sc.tl.umap(adata)
+
+# Plot the UMAP (e.g., coloring by groups if available)
+sc.pl.umap(adata, color="cluster")
+sc.pl.umap(adata, color="level1")
+sc.pl.umap(adata, color="level2")
+sc.pl.umap(adata, color="level3")
+```
+
+compare to auto cluster
+
+
+```{python}
+for res in [0.02, 0.5, 2.0]:
+    sc.tl.leiden(
+        adata, key_added=f"leiden_res_{res:4.2f}", resolution=res, flavor="igraph",
+
+    )
+```
+
+
+```{python}
+sc.pl.umap(
+    adata,
+    color=["leiden_res_0.02", "leiden_res_0.50", "leiden_res_2.00"],
+    legend_loc="on data",
+)
+```
+
+```{python}
+marker_genes = {
+    "Treg": ["FOXP3", "IKZF2", "IL2RA", "IL2RB"],
+    "Tconv": ["GZMA"],
+    "CD8": ["CD8A", "CD8B", "GZMA"],
+    "CD4": ["CD4", "IL7R", "TRBC2"],
+}
+for res in [0.02, "0.50", "2.00"]:
+    sc.pl.dotplot(
+        adata,
+        marker_genes,
+        groupby=f"leiden_res_{res}",
+        standard_scale="var",
+    )
+
+obs = pl.from_pandas(adata.obs)
+
+counts = obs.group_by("leiden_res_2.00").len().with_columns(
+    pl.col('leiden_res_2.00').cast(pl.Utf8).cast(pl.Int64).alias('res2_int')).sort("res2_int")
+GT(counts)
+```
+
+cluster 3 and 4  likely treg based on high foxp3/helios expression = 263 cells, much higher than author annotations
