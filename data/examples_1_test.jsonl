@@ -1,0 +1,4 @@
+{"genes": ["PTPRC", "FYB", "ARHGDIB", "SRGN", "LAPTM5", "LCP1", "KLF6", "TMSB4X", "CD53", "CFL1", "HLA-B", "ITGB2", "CD74", "HCLS1", "B2M", "ACTB", "NR4A2", "FOSB", "HLA-C", "ZFP36L2"], "label": "Immune", "donor": "S010", "level": 1}
+{"genes": ["FSTL1", "ABI3BP", "C1S", "COL6A2", "PDGFRA", "NNMT", "PCOLCE", "SPARCL1", "ISLR", "EBF1", "COL6A3", "CALD1", "WISP2", "CCDC80", "CAV1", "SSC5D", "GOLM1", "MXRA8", "LTBP3", "C1R"], "label": "Stromal", "donor": "S010", "level": 1}
+{"genes": ["PTPRC", "ARHGDIB", "RAC2", "PABPC1", "CD74", "CD53", "CXCR4", "KLF6", "LCP1", "HLA-C", "EIF1", "EVI2B", "SRGN", "RPS29", "BTG2", "GNB2L1", "RPLP2", "MT-CO1", "RPS21", "POU2F2"], "label": "Immune", "donor": "S014", "level": 1}
+{"genes": ["LAMA4", "MXRA8", "PDGFRA", "PTRF", "NFIB", "ISLR", "ABI3BP", "LAMB1", "ITGB5", "MMP2", "ANGPTL2", "COL6A2", "SSC5D", "MRC2", "HTRA1", "GOLM1", "SERPING1", "COL5A1", "FOXC1", "CALD1"], "label": "Stromal", "donor": "S014", "level": 1}

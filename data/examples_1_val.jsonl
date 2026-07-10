@@ -1,0 +1,2 @@
+{"genes": ["B2M", "HLA-B", "HLA-C", "KLF6", "RPLP2", "TPT1", "PTPRC", "RPS29", "CALM1", "RPS21", "MT-ND2", "PABPC1", "MT-CO2", "HLA-A", "MT-ND5", "RPS12", "ARHGDIB", "MT-ND1", "MALAT1", "FOSB"], "label": "Immune", "donor": "S012", "level": 1}
+{"genes": ["CALD1", "MXRA8", "COL6A2", "GSN", "NFIB", "MRC2", "COL6A1", "CYBRD1", "ISLR", "SERPING1", "CCDC80", "MFAP4", "HTRA1", "SERPINF1", "COL6A3", "ANGPTL2", "FBN1", "CFI", "ABI3BP", "MXRA5"], "label": "Stromal", "donor": "S012", "level": 1}
