@@ -9,4 +9,12 @@ dependencies = [
     "scanpy>=1.10.0",
     "pandas>=2.0.0",
     "numpy>=1.24.0",
+    "typing-extensions>=4.16.0",
+    "ipykernel>=7.3.0",
+    "ipywidgets>=8.1.8",
+    "igraph>=1.0.0",
+    "polars>=1.42.1",
+    "great-tables>=0.22.0",
+    "plotnine>=0.15.7",
+    "pyarrow>=25.0.0",
 ]
